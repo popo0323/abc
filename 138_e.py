@@ -5,28 +5,25 @@ t = str(input())
 
 st = tuple(s)
 tt = tuple(t)
-sg = set(st)
-tg = set(tt)
 
-if not tg <= sg:
+if not tt <= st:
   print('-1')
   sys.exit()
 
 cnt = 0
 f = int(len(st)/2)
-sta = st
 
 for i in tt:
   try:
-    f = sta.index(i,f+1,len(sta))
-    a = True
+    f = st.index(i,f+1,len(st))
   except ValueError:
-    f = sta.index(i,0,f+1)
+    f = st.index(i,0,f+1)
     cnt += 1
-    sta += sta
-    print(cnt)
-    print(f)
-    print(sta)
-    a = False
-      
-print(len(st) * (cnt - a) + f + 1)
+
+if cnt:
+  if not f == len(st):
+    print(len(st) * cnt + f + 1)
+  else: 
+    print(len(st) * (cnt + 1)+ f + 1)
+else:
+  print(f + 1)
